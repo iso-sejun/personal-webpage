@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: #080412;
+  --color-foreground: #f0e6ff;
+  --color-card: #110a24;
+  --color-primary: #e855b3;
+  --color-primary-glow: #e855b366;
+  --color-accent: #bf7af0;
+  --color-muted: #1e1233;
+  --color-muted-foreground: #9b84c4;
+  --color-border: #2a1a4a;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #080412;
+  color: #f0e6ff;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e855b344;
+  border-radius: 2px;
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.glow-pink {
+  text-shadow: 0 0 40px #e855b388, 0 0 80px #e855b344;
+}
+
+.glow-box {
+  box-shadow: 0 0 30px #e855b322, 0 0 60px #bf7af011;
+}
+
+.petal-blur {
+  filter: blur(80px);
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.float { animation: float 7s ease-in-out infinite; }
+.float-slow { animation: float 11s ease-in-out infinite; }
+.pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: white;
+  animation: sparkle 2.5s ease-in-out infinite;
+}
+
