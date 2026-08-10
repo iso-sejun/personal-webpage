@@ -353,6 +353,7 @@ function About() {
   return (
     <section
       id="about"
+      className="about-section"
       style={{
         maxWidth: 1200,
         margin: '0 auto',
@@ -364,7 +365,7 @@ function About() {
       }}
     >
       {/* Left: image + decoration */}
-      <div style={{ position: 'relative' }}>
+      <div className="about-image-column" style={{ position: 'relative' }}>
         <div
           className="petal-blur pulse-glow"
           style={{
@@ -435,7 +436,7 @@ function About() {
       </div>
 
       {/* Right: text */}
-      <div>
+      <div className="about-copy-column">
         <p style={{ fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#e855b3', marginBottom: 20, fontWeight: 500 }}>
           About Me
         </p>
@@ -826,14 +827,14 @@ function RealMe() {
       </section>
 
       {/* ── About ── */}
-      <section id="real-about" style={{ maxWidth: 1200, margin: '0 auto', padding: '100px 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
-        <div style={{ position: 'relative' }}>
+      <section id="real-about" className="about-section" style={{ maxWidth: 1200, margin: '0 auto', padding: '100px 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+        <div className="about-image-column" style={{ position: 'relative' }}>
           <div style={{ aspectRatio: '4/5', borderRadius: 8, overflow: 'hidden', border: `1px solid ${border}`, boxShadow: '0 8px 48px rgba(42,127,168,0.1)' }}>
             <img src={secondMe} alt="Shore" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
           </div>
           <div style={{ position: 'absolute', bottom: -20, right: -20, width: '60%', height: '60%', border: `1px solid ${gold}44`, borderRadius: 8, pointerEvents: 'none' }} />
         </div>
-        <div>
+        <div className="about-copy-column">
           <p style={{ fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: gold, marginBottom: 16, fontWeight: 500 }}>About Me</p>
           <h2 className="font-display" style={{ fontSize: 'clamp(30px, 4vw, 48px)', fontWeight: 600, lineHeight: 1.15, color: ink, margin: '0 0 24px' }}>
             who am i?<br />
