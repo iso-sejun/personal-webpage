@@ -131,34 +131,21 @@ function Nav({ active }: { active: string }) {
         backgroundColor: '#08041288',
       }}
     >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: '0 32px',
-          height: 64,
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)',
-          alignItems: 'center',
-          gap: 24,
-        }}
-      >
+      <div className="page-header-inner larper-header-inner">
         <a
           href="#hero"
-          className="font-display"
+          className="font-display page-brand"
           style={{
-            fontSize: 20,
             fontWeight: 600,
             color: '#f0e6ff',
             textDecoration: 'none',
             letterSpacing: '-0.01em',
-            whiteSpace: 'nowrap',
           }}
         >
           <span style={{ color: '#e855b3' }}>✦</span> Jace Sung
         </a>
         <CurrentSong />
-        <nav style={{ display: 'flex', gap: 36, justifyContent: 'flex-end' }}>
+        <nav className="page-nav">
           {NAV_LINKS.map((l) => (
             <a
               key={l}
@@ -799,12 +786,12 @@ function RealMe() {
         backdropFilter: 'blur(16px)',
         background: 'rgba(244,249,252,0.88)',
       }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', height: 60, display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)', gap: 24, alignItems: 'center' }}>
-          <span className="font-display" style={{ fontSize: 18, fontWeight: 600, color: ink, letterSpacing: '-0.01em' }}>
+        <div className="page-header-inner real-header-inner">
+          <span className="font-display page-brand real-page-brand" style={{ fontWeight: 600, color: ink, letterSpacing: '-0.01em' }}>
             <span style={{ color: gold }}>◦</span> Jace Sung
           </span>
           <CurrentSong song={REAL_FAVORITE_SONG} variant="light" />
-          <nav style={{ display: 'flex', gap: 32, justifyContent: 'flex-end' }}>
+          <nav className="page-nav real-page-nav">
             {['About', 'Hobbies', 'Interests'].map(l => (
               <a key={l} href={`#real-${l.toLowerCase()}`} style={{ fontSize: 13, letterSpacing: '0.05em', textTransform: 'uppercase', color: muted, textDecoration: 'none', transition: 'color 0.2s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = ink)}
