@@ -97,6 +97,13 @@ body {
   min-width: 0;
 }
 
+.current-song-pill.light {
+  border-color: #c8923a55;
+  background: #d8edf8;
+  box-shadow: 0 8px 28px rgba(42, 127, 168, 0.14), inset 0 1px 0 #ffffffaa;
+  color: #1a3040;
+}
+
 .current-song-cover {
   width: 38px;
   height: 38px;
@@ -140,8 +147,17 @@ body {
   box-shadow: 0 0 18px #e855b366;
 }
 
+.current-song-pill.light .current-song-play {
+  background: #e9f2f7;
+  box-shadow: 0 0 18px rgba(200, 146, 58, 0.35);
+}
+
 .current-song-play:hover {
   box-shadow: 0 0 24px #e855b388;
+}
+
+.current-song-pill.light .current-song-play:hover {
+  box-shadow: 0 0 24px rgba(200, 146, 58, 0.52);
 }
 
 .current-song-play span {
@@ -151,6 +167,10 @@ body {
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   border-left: 12px solid #080412;
+}
+
+.current-song-pill.light .current-song-play span {
+  border-left-color: #2a7fa8;
 }
 
 .current-song-copy {
@@ -168,6 +188,10 @@ body {
   text-transform: uppercase;
 }
 
+.current-song-pill.light .current-song-copy p {
+  color: #2a7fa8;
+}
+
 .current-song-copy span {
   display: block;
   overflow: hidden;
@@ -178,6 +202,10 @@ body {
   line-height: 1.15;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.current-song-pill.light .current-song-copy span {
+  color: #1a3040;
 }
 
 .sparkle {

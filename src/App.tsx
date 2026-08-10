@@ -6,6 +6,7 @@ import imgBlackpinkJump from '@/imports/blackpink-jump-cover.png'
 import secondMe from '@/imports/IMG_3180.jpg'
 import imgTokiPona from '@/imports/IMG_2841.jpeg'
 import imgBooksILike from '@/imports/booksilike.png'
+import imgYenaSmiley from '@/imports/yena-smiley-cover.png'
 
 const NAV_LINKS = ['About', 'Work']
 const SWITCHER_OFFSET = 56
@@ -21,6 +22,13 @@ const FAVORITE_SONG = {
   artist: 'Blackpink',
   cover: imgBlackpinkJump,
   spotifyUrl: 'https://open.spotify.com/track/5H1sKFMzDeMtXwND3V6hRY',
+}
+
+const REAL_FAVORITE_SONG = {
+  title: 'Smiley',
+  artist: 'Yena ft. Bibi',
+  cover: imgYenaSmiley,
+  spotifyUrl: 'https://open.spotify.com/track/4zCIxSnVWpGNghERX4uWZF?si=5b578fc4488240b2',
 }
 
 const PROJECTS = [
@@ -69,34 +77,40 @@ function Sparkles() {
   )
 }
 
-function CurrentSong() {
+function CurrentSong({
+  song = FAVORITE_SONG,
+  variant = 'dark',
+}: {
+  song?: typeof FAVORITE_SONG
+  variant?: 'dark' | 'light'
+}) {
   return (
-    <div className="current-song-pill" aria-label={`Currently looping: ${FAVORITE_SONG.title} by ${FAVORITE_SONG.artist}`}>
+    <div className={`current-song-pill ${variant}`} aria-label={`Currently looping: ${song.title} by ${song.artist}`}>
       <a
-        href={FAVORITE_SONG.spotifyUrl}
+        href={song.spotifyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Open ${FAVORITE_SONG.title} by ${FAVORITE_SONG.artist} on Spotify`}
+        aria-label={`Open ${song.title} by ${song.artist} on Spotify`}
         className="current-song-cover-link"
       >
         <img
-          src={FAVORITE_SONG.cover}
-          alt={`${FAVORITE_SONG.title} by ${FAVORITE_SONG.artist} album cover`}
+          src={song.cover}
+          alt={`${song.title} by ${song.artist} album cover`}
           className="current-song-cover"
         />
       </a>
       <a
-        href={FAVORITE_SONG.spotifyUrl}
+        href={song.spotifyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Play ${FAVORITE_SONG.title} by ${FAVORITE_SONG.artist} on Spotify`}
+        aria-label={`Play ${song.title} by ${song.artist} on Spotify`}
         className="current-song-play"
       >
         <span />
       </a>
       <div className="current-song-copy">
         <p>Currently Looping</p>
-        <span>{FAVORITE_SONG.title} by {FAVORITE_SONG.artist}</span>
+        <span>{song.title} by {song.artist}</span>
       </div>
     </div>
   )
@@ -278,8 +292,7 @@ function Hero() {
             maxWidth: 900,
           }}
         >
-        joy, jokes, and {' '}
-          <em style={{ color: '#e855b3', fontStyle: 'italic' }}>jace</em>{' '}
+        joy, jokes, and jace
           
         </h1>
         <p
@@ -786,11 +799,12 @@ function RealMe() {
         backdropFilter: 'blur(16px)',
         background: 'rgba(244,249,252,0.88)',
       }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', height: 60, display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)', gap: 24, alignItems: 'center' }}>
           <span className="font-display" style={{ fontSize: 18, fontWeight: 600, color: ink, letterSpacing: '-0.01em' }}>
             <span style={{ color: gold }}>◦</span> Jace Sung
           </span>
-          <nav style={{ display: 'flex', gap: 32 }}>
+          <CurrentSong song={REAL_FAVORITE_SONG} variant="light" />
+          <nav style={{ display: 'flex', gap: 32, justifyContent: 'flex-end' }}>
             {['About', 'Hobbies', 'Interests'].map(l => (
               <a key={l} href={`#real-${l.toLowerCase()}`} style={{ fontSize: 13, letterSpacing: '0.05em', textTransform: 'uppercase', color: muted, textDecoration: 'none', transition: 'color 0.2s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = ink)}
