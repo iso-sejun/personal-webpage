@@ -852,14 +852,14 @@ function RealMe() {
 
       <HobbiesSection />
 
-      {/* ── Writing ── */}
-      <section id="real-interests" style={{ padding: '100px 0', borderTop: `1px solid ${border}` }}>
+      {/* ── Interests ── */}
+      <section id="real-interests" className="real-interests-section" style={{ borderTop: `1px solid ${border}` }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px' }}>
           <p style={{ fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: gold, marginBottom: 12, fontWeight: 500 }}>Interests</p>
           <h2 className="font-display" style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 600, color: ink, margin: '0 0 56px' }}>what i like</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          <div className="real-interests-grid">
             {REAL_INTERESTS.map((w, i) => (
-              <a key={w.title} style={{ display: 'block', padding: 28, background: card, border: `1px solid ${border}`, borderRadius: 6, textDecoration: 'none', boxShadow: '0 2px 12px rgba(42,127,168,0.06)', transition: 'box-shadow 0.2s, border-color 0.2s' }}
+              <a key={w.title} className="real-interest-card" style={{ background: card, border: `1px solid ${border}` }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 6px 28px rgba(42,127,168,0.14)'; e.currentTarget.style.borderColor = '#9ac8de' }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 2px 12px rgba(42,127,168,0.06)'; e.currentTarget.style.borderColor = border }}>
                 <h3 className="font-display" style={{ fontSize: 20, fontWeight: 600, lineHeight: 1.3, color: ink, margin: '14px 0 18px' }}>{w.title}</h3>

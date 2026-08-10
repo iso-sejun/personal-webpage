@@ -360,6 +360,26 @@ body {
   padding: 100px 0 0;
 }
 
+.real-interests-section {
+  padding: 100px 0;
+}
+
+.real-interests-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.real-interest-card {
+  display: block;
+  min-width: 0;
+  padding: 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(42, 127, 168, 0.06);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
 .real-hobbies-heading {
   max-width: 1200px;
   margin: 0 auto;
@@ -535,5 +555,19 @@ body {
 
   .hobby-image-space {
     min-height: 280px;
+  }
+}
+
+@media (max-width: 760px) {
+  .real-interests-section {
+    padding: 72px 0;
+  }
+
+  .real-interests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .real-interest-card {
+    padding: 24px;
   }
 }
