@@ -528,7 +528,7 @@ function About() {
         <p style={{ fontSize: 16, lineHeight: 1.8, color: '#9b84c4', marginBottom: 40, fontWeight: 300 }}>
           On campus, I'm active in the Association of Women in Math and the Women in CS club. In my free time, I love meeting new peopple, attending hackathons, and building personal projects.
         </p>
-        <div style={{ display: 'flex', gap: 48 }}>
+        <div className="larper-stats" style={{ display: 'flex', gap: 48 }}>
           {[['Favorite Subjects', 'Math + CS'], ['Favorite College', 'Dartmouth'], ['Favorite Letter', 'J']].map(([a, b]) => (
             <div key={a}>
               <p className="font-display" style={{ fontSize: 15, fontWeight: 600, color: '#f0e6ff', margin: '0 0 4px' }}>{a}</p>
@@ -546,6 +546,7 @@ function Work() {
   return (
     <section
       id="work"
+      className="larper-work"
       style={{
         padding: '120px 0',
         position: 'relative',
@@ -990,7 +991,7 @@ export default function App() {
       {page === 'real' ? (
         <RealMe />
       ) : (
-        <div style={{ background: '#080412', minHeight: '100vh', paddingTop: SWITCHER_OFFSET }}>
+        <div className="larper-page" style={{ background: '#080412', minHeight: '100vh', paddingTop: SWITCHER_OFFSET }}>
           <Nav active={activeSection} />
           <Hero />
           <About />

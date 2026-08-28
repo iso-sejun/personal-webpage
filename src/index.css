@@ -80,6 +80,21 @@ body {
 .float-slow { animation: float 11s ease-in-out infinite; }
 .pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
 
+.larper-page {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@supports (overflow-x: clip) {
+  .larper-page {
+    overflow-x: clip;
+  }
+}
+
+.larper-work {
+  overflow: hidden;
+}
+
 .page-header-inner {
   max-width: 1200px;
   height: var(--page-header-height, 64px);
@@ -283,6 +298,15 @@ body {
     max-width: 620px;
     width: 100%;
     margin: 0 auto;
+  }
+
+  .larper-stats {
+    flex-wrap: wrap;
+    gap: 24px 32px !important;
+  }
+
+  .larper-stats > div {
+    min-width: max-content;
   }
 }
 
