@@ -31,6 +31,111 @@ const REAL_FAVORITE_SONG = {
   spotifyUrl: 'https://open.spotify.com/track/4zCIxSnVWpGNghERX4uWZF?si=5b578fc4488240b2',
 }
 
+type HeaderNavLink = {
+  label: string
+  href: string
+}
+
+type HeaderTheme = {
+  accent: string
+  activeColor?: string
+  background: string
+  border: string
+  brandFontSize?: number
+  brandColor: string
+  backdropFilter?: string
+  height?: number
+  hoverColor: string
+  inactiveColor: string
+  navFontSize?: number
+  navGap?: number
+  navLetterSpacing?: string
+  songVariant: 'dark' | 'light'
+  zIndex?: number
+}
+
+function PageHeader({
+  active,
+  brandHref,
+  marker,
+  navLinks,
+  song,
+  theme,
+}: {
+  active?: string
+  brandHref: string
+  marker: string
+  navLinks: HeaderNavLink[]
+  song: typeof FAVORITE_SONG
+  theme: HeaderTheme
+}) {
+  return (
+    <header
+      style={{
+        position: 'fixed',
+        top: SWITCHER_OFFSET,
+        left: 0,
+        right: 0,
+        zIndex: theme.zIndex ?? 50,
+        borderBottom: theme.border,
+        backdropFilter: theme.backdropFilter ?? 'blur(20px)',
+        background: theme.background,
+      }}
+    >
+      <div
+        className="page-header-inner"
+        style={{
+          '--page-header-height': `${theme.height ?? 64}px`,
+          '--page-brand-size': `${theme.brandFontSize ?? 20}px`,
+          '--page-nav-size': `${theme.navFontSize ?? 14}px`,
+          '--page-nav-gap': `${theme.navGap ?? 36}px`,
+          '--page-nav-letter-spacing': theme.navLetterSpacing ?? '0.04em',
+        } as React.CSSProperties}
+      >
+        <a
+          href={brandHref}
+          className="font-display page-brand"
+          style={{
+            fontWeight: 600,
+            color: theme.brandColor,
+            textDecoration: 'none',
+            letterSpacing: '-0.01em',
+          }}
+        >
+          <span style={{ color: theme.accent }}>{marker}</span> Jace Sung
+        </a>
+        <CurrentSong song={song} variant={theme.songVariant} />
+        <nav className="page-nav">
+          {navLinks.map((link) => {
+            const isActive = active === link.label.toLowerCase()
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                style={{
+                  fontSize: theme.navFontSize ?? 14,
+                  fontWeight: 400,
+                  letterSpacing: theme.navLetterSpacing ?? '0.04em',
+                  textTransform: 'uppercase',
+                  color: isActive ? theme.activeColor ?? theme.accent : theme.inactiveColor,
+                  textDecoration: 'none',
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = theme.hoverColor)}
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = isActive ? theme.activeColor ?? theme.accent : theme.inactiveColor)
+                }
+              >
+                {link.label}
+              </a>
+            )
+          })}
+        </nav>
+      </div>
+    </header>
+  )
+}
+
 const PROJECTS = [
   {
     title: 'Hyperion',
@@ -117,60 +222,30 @@ function CurrentSong({
 }
 
 function Nav({ active }: { active: string }) {
-  const [open, setOpen] = useState(false)
   return (
-    <header
-      style={{
-        position: 'fixed',
-        top: SWITCHER_OFFSET,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        borderBottom: '1px solid #2a1a4a44',
+    <PageHeader
+      active={active}
+      brandHref="#hero"
+      marker="✦"
+      navLinks={NAV_LINKS.map((label) => ({ label, href: `#${label.toLowerCase()}` }))}
+      song={FAVORITE_SONG}
+      theme={{
+        accent: '#e855b3',
+        activeColor: '#e855b3',
+        background: '#08041288',
         backdropFilter: 'blur(20px)',
-        backgroundColor: '#08041288',
+        border: '1px solid #2a1a4a44',
+        brandFontSize: 20,
+        brandColor: '#f0e6ff',
+        height: 64,
+        hoverColor: '#f0e6ff',
+        inactiveColor: '#9b84c4',
+        navFontSize: 14,
+        navGap: 36,
+        navLetterSpacing: '0.04em',
+        songVariant: 'dark',
       }}
-    >
-      <div className="page-header-inner larper-header-inner">
-        <a
-          href="#hero"
-          className="font-display page-brand"
-          style={{
-            fontWeight: 600,
-            color: '#f0e6ff',
-            textDecoration: 'none',
-            letterSpacing: '-0.01em',
-          }}
-        >
-          <span style={{ color: '#e855b3' }}>✦</span> Jace Sung
-        </a>
-        <CurrentSong />
-        <nav className="page-nav">
-          {NAV_LINKS.map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              style={{
-                fontSize: 14,
-                fontWeight: 400,
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                color: active === l.toLowerCase() ? '#e855b3' : '#9b84c4',
-                textDecoration: 'none',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.color = '#f0e6ff')}
-              onMouseLeave={(e) =>
-                ((e.target as HTMLAnchorElement).style.color =
-                  active === l.toLowerCase() ? '#e855b3' : '#9b84c4')
-              }
-            >
-              {l}
-            </a>
-          ))}
-        </nav>
-      </div>
-    </header>
+    />
   )
 }
 
@@ -780,29 +855,27 @@ function RealMe() {
   return (
     <div style={{ background: bg, minHeight: '100vh', color: ink }}>
 
-      {/* ── Nav ── */}
-      <header style={{
-        position: 'fixed', top: SWITCHER_OFFSET, left: 0, right: 0, zIndex: 50,
-        borderBottom: `1px solid ${border}`,
-        backdropFilter: 'blur(16px)',
-        background: 'rgba(244,249,252,0.88)',
-      }}>
-        <div className="page-header-inner real-header-inner">
-          <span className="font-display page-brand real-page-brand" style={{ fontWeight: 600, color: ink, letterSpacing: '-0.01em' }}>
-            <span style={{ color: gold }}>◦</span> Jace Sung
-          </span>
-          <CurrentSong song={REAL_FAVORITE_SONG} variant="light" />
-          <nav className="page-nav real-page-nav">
-            {['About', 'Hobbies', 'Interests'].map(l => (
-              <a key={l} href={`#real-${l.toLowerCase()}`} style={{ fontSize: 13, letterSpacing: '0.05em', textTransform: 'uppercase', color: muted, textDecoration: 'none', transition: 'color 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = ink)}
-                onMouseLeave={e => (e.currentTarget.style.color = muted)}>
-                {l}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </header>
+      <PageHeader
+        brandHref="#real-hero"
+        marker="◦"
+        navLinks={['About', 'Hobbies', 'Interests'].map((label) => ({ label, href: `#real-${label.toLowerCase()}` }))}
+        song={REAL_FAVORITE_SONG}
+        theme={{
+          accent: gold,
+          background: 'rgba(244,249,252,0.88)',
+          backdropFilter: 'blur(16px)',
+          border: `1px solid ${border}`,
+          brandFontSize: 18,
+          brandColor: ink,
+          height: 60,
+          hoverColor: ink,
+          inactiveColor: muted,
+          navFontSize: 13,
+          navGap: 32,
+          navLetterSpacing: '0.05em',
+          songVariant: 'light',
+        }}
+      />
 
       {/* ── Hero ── */}
       <section id="real-hero" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>

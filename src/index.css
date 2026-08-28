@@ -82,7 +82,7 @@ body {
 
 .page-header-inner {
   max-width: 1200px;
-  height: 64px;
+  height: var(--page-header-height, 64px);
   margin: 0 auto;
   padding: 0 32px;
   display: grid;
@@ -91,29 +91,17 @@ body {
   gap: 24px;
 }
 
-.real-header-inner {
-  height: 60px;
-}
-
 .page-brand {
-  font-size: 20px;
+  font-size: var(--page-brand-size, 20px);
   line-height: 1;
   white-space: nowrap;
-}
-
-.real-page-brand {
-  font-size: 18px;
 }
 
 .page-nav {
   display: flex;
   justify-content: flex-end;
-  gap: 36px;
+  gap: var(--page-nav-gap, 36px);
   min-width: 0;
-}
-
-.real-page-nav {
-  gap: 32px;
 }
 
 .current-song-pill {
@@ -300,8 +288,7 @@ body {
 
 @media (max-width: 700px) {
   .page-header-inner {
-    display: flex;
-    justify-content: center;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 16px;
     padding: 0 20px;
   }
@@ -315,13 +302,9 @@ body {
     min-width: max-content;
   }
 
-  .real-page-brand {
-    font-size: 16px;
-  }
-
   .page-nav {
     gap: 18px;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .page-nav a {
@@ -337,10 +320,6 @@ body {
 
   .page-nav {
     gap: 14px;
-  }
-
-  .real-page-nav {
-    gap: 12px;
   }
 
   .page-nav a {
